@@ -1,0 +1,43 @@
+<!--Google Map -->
+<!-- https://developers.google.com/maps/documentation/javascript/controls -->
+<script>
+	function initMap() {
+	//Параметры карты
+		//Координаты центра карты
+		var latlng = new google.maps.LatLng(51.653045, 39.184350);
+
+		var settings = {
+			zoom: 17,//* - обязательный параметр
+			center: latlng,//* - обязательный параметр
+			//Отключаем скрол
+			scrollwheel: false,
+			//Меню выбора типа карты дорожная/спутник и ее настройки
+				mapTypeControl: true,
+				mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU},
+			//Кнопки масштабирования и их настройки
+			navigationControl: true,
+			navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL},
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+			};
+
+		var map = new google.maps.Map(document.getElementById('map'), settings);
+		var geocoder = new google.maps.Geocoder();
+
+		//Указатель - параметры изображения
+		var companyImage = new google.maps.MarkerImage('images/mark.png',
+			new google.maps.Size(168,99),
+			new google.maps.Point(0,0)
+		);
+		//Указатель - координаты
+		var companyPos = new google.maps.LatLng(51.652941, 39.186189);
+		//Указатель - инициализация
+		var companyMarker = new google.maps.Marker({
+			position: companyPos,
+			map: map,
+			icon: companyImage,
+			zIndex: 3});
+	}
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3Wb3RgTeHo9Nnk8C9V6yPUfwqSHrGRC0&sensor=false&signed_in=true&callback=initMap"	async defer></script>
+<!--\\ Google Map
